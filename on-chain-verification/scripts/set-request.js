@@ -26,10 +26,10 @@ async function main() {
     value: [20020101, ...new Array(63).fill(0)], // for operators 1-3 only first value matters
     };
 
-  // add the address of the contract just deployed
-  const ERC20VerifierAddress = process.env.ERC20_VERIFIER_ADDRESS;
+  // address of the ERC20Verifier contract
+  const { ERC20_VERIFIER_ADDRESS } = process.env;
 
-  const erc20Verifier = await hre.ethers.getContractAt("ERC20Verifier", ERC20VerifierAddress)
+  const erc20Verifier = await hre.ethers.getContractAt("ERC20Verifier", ERC20_VERIFIER_ADDRESS)
 
 
   const validatorAddress = "0xF2D4Eeb4d455fb673104902282Ce68B9ce4Ac450"; // sig validator
