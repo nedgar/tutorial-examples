@@ -7,14 +7,14 @@ const port = 8080;
 
 app.use(express.static('static'));
 
-app.get("/api/sign-in", (req, res) => {
+app.get("/api/sign-in", async (req, res) => {
     console.log('get Auth Request');
-    GetAuthRequest(req,res);
+    await GetAuthRequest(req,res);
 });
 
-app.post("/api/callback", (req, res) => {
+app.post("/api/callback", async (req, res) => {
     console.log('callback');
-    Callback(req,res);
+    await Callback(req,res);
 });
 
 app.listen(port, () => {
@@ -28,7 +28,7 @@ const requestMap = new Map();
 		async function GetAuthRequest(req,res) {
 
 			const sessionId = 1;
-			const request = require('./requests/qrValueProofRequestExample.json');
+			const request = require('../../on-chain-verification/qrValueProofRequestExample.json');
 			 
 			// Store auth request in map associated with session ID
 			requestMap.set(`${sessionId}`, request);
