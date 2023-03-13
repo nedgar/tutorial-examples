@@ -23,13 +23,13 @@ async function main() {
     schema: schemaBigInt,
     claimPathKey  : schemaClaimPathKey,
     operator: Operators.LT, // operator
-    value: [20020101, ...new Array(63).fill(0).map(i => 0)], // for operators 1-3 only first value matters
+    value: [20020101, ...new Array(63).fill(0)], // for operators 1-3 only first value matters
     };
 
   // add the address of the contract just deployed
-  const ERC20VerifierAddress = "0x1C30DC7674e5Fd4f6154152E018b92ff29E66B41"
+  const ERC20VerifierAddress = process.env.ERC20_VERIFIER_ADDRESS;
 
-  let erc20Verifier = await hre.ethers.getContractAt("ERC20Verifier", ERC20VerifierAddress)
+  const erc20Verifier = await hre.ethers.getContractAt("ERC20Verifier", ERC20VerifierAddress)
 
 
   const validatorAddress = "0xF2D4Eeb4d455fb673104902282Ce68B9ce4Ac450"; // sig validator
